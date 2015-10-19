@@ -54,7 +54,8 @@ var respond = function(event) {
 			output.innerHTML = text;
 			output.style.color = 'black';
 			output = createOutput();
-			if ( text.match(/qs['t']/i) ) { speak("OK"); }
+			var re = new RegEx(qs['t'], 'i');
+			if ( text.match(re) ) { speak("OK"); }
 			else { speak("sorry"); }
 		} else {
 			output.innerHTML = text;
@@ -62,7 +63,7 @@ var respond = function(event) {
 	}
 }
 var createOutput = function() {
-	var output = document.createElement('output');
+	var output = document.createElement('p');
 	output.style.color = 'gray';
 	document.getElementById("d1").appendChild(output);
 	return output;
