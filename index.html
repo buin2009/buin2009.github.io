@@ -55,7 +55,7 @@ var respond = function(event) {
 			output.innerHTML = text;
 			output.style.color = 'black';
 			output = createOutput();
-			var re = new RegEx(qs['t'], 'i');
+			var re = new RegExp(qs['t'], 'i');
 			if ( text.match(re) ) { speak("OK"); }
 			else { speak("sorry"); }
 		} else {
