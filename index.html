@@ -16,41 +16,131 @@
 
 
 <!-- Add content here -->
-<header class="center px2 py4">
-  <svg viewBox="0 0 32 32"
-    width="3em"
-    height="3em"
-    class="inline-block mt4 mb4 clickable js-skull"
-    fill="currentColor">
-    <path d="
-      M0 6 H32 V24 L28 25 V28 H4 V25 L0 24z
-      M2 8 V22 L6 23 V26 H26 V23 L30 22 V8z
-      M3 17 A4 4 0 0 0 11 17 A4 4 0 0 0 3 17
-      M21 17 A4 4 0 0 0 29 17 A4 4 0 0 0 21 17 
-    "/>
-  </svg>
-  <div class="mb1">
-    <h1 class="h2 inline-block m0">
-      Skull:
-    </h1>
-    <p class="h2 inline-block m0">Bare bones boilerplate and Basscss theme</p>
-  </div>
-  <div class="h6 bold caps mb3">v1.0.0</div>
-  <a href="https://github.com/jxnblk/skull/archive/1.0.0.zip" class="h6 caps button ml1 mr1">
-    Download
-  </a>
-</header>
-
+<script>
+var qs = (function(a) {
+    if (a == "") return {};
+    var b = {};
+    for (var i = 0; i < a.length; ++i)
+    {
+        var p=a[i].split('=', 2);
+        if (p.length == 1)
+            b[p[0]] = "";
+        else
+            b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+    }
+    return b;
+})(window.location.search.substr(1).split('&'));
+var respond = function(event) {
+	var text = '';
+	for (var i = event.resultIndex; i < event.results.length; ++i) {
+		var result = event.results[i];
+		text += result[0].transcript;
+		if (result.isFinal) {
+			output.innerHTML = text;
+			//output.style.color = 'black';
+			output = createOutput();
+			if (qs['t']==text) { speak("OK"); }
+			else { speak("sorry"); }
+		} else {
+			output.innerHTML = text;
+		}
+	}
+}
+var createOutput = function() {
+	var output = document.createElement('output');
+	output.style.color = 'gray';
+	document.body.appendChild(output);
+	return output;
+}
+var speak = function(text) {
+	// chrome://flags -> Enable experimental Web Platform features
+	var utterance = new SpeechSynthesisUtterance(text);
+	utterance.lang = 'en-US';
+	utterance.volume = 1; // 0 to 1
+	utterance.rate = 1; // 0.1 to 10
+	utterance.pitch = 1; //0 to 2
+	window.speechSynthesis.speak(utterance);
+}
+var listen = function() {
+	var recognition = new webkitSpeechRecognition();
+	recognition.continuous = false;
+	recognition.interimResults = true;
+	recognition.lang = 'en-US';
+	recognition.start();
+	recognition.onresult = respond;
+	//recognition.onend = function(event) { console.log(event) };
+}
+var output = createOutput();
+setInterval(listen, 15000);
+</script>
+<script>
+var qs = (function(a) {
+    if (a == "") return {};
+    var b = {};
+    for (var i = 0; i < a.length; ++i)
+    {
+        var p=a[i].split('=', 2);
+        if (p.length == 1)
+            b[p[0]] = "";
+        else
+            b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+    }
+    return b;
+})(window.location.search.substr(1).split('&'));
+var respond = function(event) {
+	var text = '';
+	for (var i = event.resultIndex; i < event.results.length; ++i) {
+		var result = event.results[i];
+		text += result[0].transcript;
+		if (result.isFinal) {
+			output.innerHTML = text;
+			output.style.color = 'black';
+			output = createOutput();
+			if (qs['t']==text) { speak("OK"); }
+			else { speak("sorry"); }
+		} else {
+			output.innerHTML = text;
+		}
+	}
+}
+var createOutput = function() {
+	var output = document.createElement('output');
+	output.style.color = 'gray';
+	document.getElementById("d1").appendChild(output);
+	return output;
+}
+var speak = function(text) {
+	// chrome://flags -> Enable experimental Web Platform features
+	var utterance = new SpeechSynthesisUtterance(text);
+	utterance.lang = 'en-US';
+	utterance.volume = 1; // 0 to 1
+	utterance.rate = 1; // 0.1 to 10
+	utterance.pitch = 1; //0 to 2
+	window.speechSynthesis.speak(utterance);
+}
+var listen = function() {
+	var recognition = new webkitSpeechRecognition();
+	recognition.continuous = false;
+	recognition.interimResults = true;
+	recognition.lang = 'en-US';
+	recognition.start();
+	recognition.onresult = respond;
+	//recognition.onend = function(event) { console.log(event) };
+}
+var output = createOutput();
+//setInterval(listen, 15000); 
+listen();
+</script>
 <section id="features" class="container px2 py4 overflow-hidden">
   <div class="h3 center row">
     <div class="column-4 py2">
-      Lightweight, minimal styles ready to be customized
+      []
+    </div>
+    <div id="d1" class="column-4 py2">
+      ..
     </div>
     <div class="column-4 py2">
-      No compilation or installation required – just plain HTML and CSS
-    </div>
-    <div class="column-4 py2">
-      Powerful utilities to design in the browser faster
+      []
     </div>
   </div>
 </section>
