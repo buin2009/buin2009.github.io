@@ -24,9 +24,9 @@ var qs = (function(a) {
 })(window.location.search.substr(1).split('&'));
 var current_phase=window.location.hash;
 current_phase=current_phase.replace('#', '');
-current_phase=current_phase.replace('-', ' ');
+current_phase=current_phase.replace(/\-/g, ' ');
 var article = document.getElementById("card1");
-    article.innerHTML="<a href=" + window.location.hash + " >" +
+    article.innerHTML="<a href=#" + window.location.hash + " >" +
                       current_phase + "</a>";
 var respond = function(event) {
 	var text = '';
