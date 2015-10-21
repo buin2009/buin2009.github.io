@@ -1,0 +1,74 @@
+<!doctype html>
+<meta charset="utf-8">
+
+<title>Speech Loop</title>
+<style>
+body {margin:auto;max-with:600px}
+</style>
+<body>
+<article id="card1">
+</article>
+<script>
+var qs = (function(a) {
+    if (a == "") return {};
+    var b = {};
+    for (var i = 0; i < a.length; ++i)
+    {
+        var p=a[i].split('=', 2);
+        if (p.length == 1)
+            b[p[0]] = "";
+        else
+            b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+    }
+    return b;
+})(window.location.search.substr(1).split('&'));
+var current_phase=window.location.hash;
+current_phase.replace('-', ' ');
+var article = getElementById("card1");
+    article.innerHTML="<a href=#" + window.location.hash + " >" +
+                      current_phase + "</a>";
+var respond = function(event) {
+	var text = '';
+	for (var i = event.resultIndex; i < event.results.length; ++i) {
+		var result = event.results[i];
+		text += result[0].transcript;
+		if (result.isFinal) {
+			output.innerHTML = text;
+			output.style.color = 'black';
+			output = createOutput();
+			if (qs['t']==text) { speak("OK"); }
+			else { speak("sorry"); }
+		} else {
+			output.innerHTML = text;
+		}
+	}
+}
+var createOutput = function() {
+	var output = document.createElement('div');
+	output.style.color = 'gray';
+	document.getElementById('card1').appendChild(output);
+	return output;
+}
+var speak = function(text) {
+	// chrome://flags -> Enable experimental Web Platform features
+	var utterance = new SpeechSynthesisUtterance(text);
+	utterance.lang = 'en-US';
+	utterance.volume = 1; // 0 to 1
+	utterance.rate = 1; // 0.1 to 10
+	utterance.pitch = 1; //0 to 2
+	window.speechSynthesis.speak(utterance);
+}
+var listen = function() {
+	var recognition = new webkitSpeechRecognition();
+	recognition.continuous = false;
+	recognition.interimResults = true;
+	recognition.lang = 'en-US';
+	recognition.start();
+	recognition.onresult = respond;
+	//recognition.onend = function(event) { console.log(event) };
+}
+var output = createOutput();
+setInterval(listen, 15000);
+</script>
+
+</body></html>
