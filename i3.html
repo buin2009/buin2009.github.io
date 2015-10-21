@@ -23,9 +23,10 @@ var qs = (function(a) {
     return b;
 })(window.location.search.substr(1).split('&'));
 var current_phase=window.location.hash;
+current_phase.replace('#', '');
 current_phase.replace('-', ' ');
 var article = document.getElementById("card1");
-    article.innerHTML="<a href=#" + window.location.hash + " >" +
+    article.innerHTML="<a href=" + window.location.hash + " >" +
                       current_phase + "</a>";
 var respond = function(event) {
 	var text = '';
@@ -68,7 +69,7 @@ var listen = function() {
 	//recognition.onend = function(event) { console.log(event) };
 }
 var output = createOutput();
-setInterval(listen, 15000);
+listen ();
 </script>
 
 </body></html>
