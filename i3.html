@@ -35,7 +35,7 @@ var respond = function(event) {
 		text = result[0].transcript;
 		text= text.trim();
 		if (result.isFinal) {
-			output.innerHTML = text;
+			output.innerHTML = text+":"+current_phase;
 			output.style.color = 'black';
 			output = createOutput();
 			if (current_phase==text) { speak("OK"); }
