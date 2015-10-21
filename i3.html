@@ -7,6 +7,10 @@ body {margin:auto;max-width:600px}
 </style>
 <body>
 <article id="card1">
+	<a href=#hello>Hello</a>
+	<a href=#good-morning>Good morning</a>
+	<a href=#goodbye>Goodbye</a>
+	<a href=#see-you-again>See you again</a>
 </article>
 <script>
 var qs = (function(a) {
@@ -25,9 +29,7 @@ var qs = (function(a) {
 var current_phase=window.location.hash;
 current_phase=current_phase.replace('#', '');
 current_phase=current_phase.replace(/\-/g, ' ');
-var article = document.getElementById("card1");
-    article.innerHTML="<a href=" + window.location.hash + " >" +
-                      current_phase + "</a>";
+
 var respond = function(event) {
 	var text = '';
 	for (var i = event.resultIndex; i < event.results.length; ++i) {
