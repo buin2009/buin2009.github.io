@@ -32,7 +32,8 @@ var respond = function(event) {
 	var text = '';
 	for (var i = event.resultIndex; i < event.results.length; ++i) {
 		var result = event.results[i];
-		text += result[0].transcript;
+		text = result[0].transcript;
+		text= text.trim();
 		if (result.isFinal) {
 			output.innerHTML = text;
 			output.style.color = 'black';
