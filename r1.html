@@ -17,6 +17,10 @@ var Input = React.createClass({
   getInitialState: function() {
     return {value: 0};
   },
+   play_words: function(event) {
+    speak(test_data[this.state.value]);
+    
+  },
   handleChange: function(event) {
     this.setState({value: this.state.value+1});
     current_phase=test_cards[event.target.value];
@@ -25,7 +29,7 @@ var Input = React.createClass({
     var value = this.state.value;
     return (
       <div>
-        <div><a onClick=speak({value})>PLAY:</a>{test_cards[value]}</div>
+        <div><a onClick=play_words)>PLAY:</a>{test_cards[value]}</div>
         <div><a onClick=handleChange)>NEXT:</a></div>
         <p id="card1">{value}</p>
       </div>
