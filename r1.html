@@ -29,8 +29,8 @@ var Input = React.createClass({
     var value = this.state.value;
     return (
       <div>
-        <div><a onClick=play_words)>PLAY:</a>{test_cards[value]}</div>
-        <div><a onClick=handleChange)>NEXT:</a></div>
+        <div><a onClick={this.playWords}>PLAY:</a>{test_cards[value]}</div>
+        <div><a onClick={this.handleChange}>NEXT:</a></div>
         <p id="card1">{value}</p>
       </div>
     );
