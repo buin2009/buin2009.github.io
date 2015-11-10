@@ -32,11 +32,15 @@ var CardP = React.createClass({
     this.setState({value: this.state.value+1});
     current_phase=test_cards[event.target.value];
   },
+  matchWords: function(event) {
+    listen();
+  },  
   render: function () {
     var value = this.state.value;
     return (
       <div>
         <div><a href="#" onClick={this.playWords}>PLAY:</a>{test_cards[value].phrase}</div>
+        <div><a href="#" onClick={this.matchWords}>LISTEN:</a></div>
         <div><a href="#" onClick={this.handleChange}>NEXT:</a></div>
         <p id="card1">{value}</p>
       </div>
@@ -57,11 +61,11 @@ var respond = function(event) {
 			output.innerHTML = text+":"+current_phase;
              console.log(text);
 			output.style.color = 'black';
-			output = createOutput();
+			//output = createOutput();
 			if (current_phase.toLowerCase()==text) { speak("OK"); }
 			else { speak("sorry"); }
 		} else {
-			output.innerHTML = text;
+			//output.innerHTML = text;
 		}
 	}
 }
@@ -82,7 +86,7 @@ var speak = function(text) {
 }
 var listen = function() {
 	var recognition = new webkitSpeechRecognition();
-	recognition.continuous = true;
+	recognition.continuous = false;
 	recognition.interimResults = true;
 	recognition.lang = 'en-US';
 	recognition.start();
