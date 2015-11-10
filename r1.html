@@ -13,6 +13,12 @@ body {margin:auto;max-width:600px}
   <body>
     <div id="example"></div>
     <script type="text/babel">
+var current_phase="";
+var test_cards = [{phrase:"Hello"},
+  {phrase:"Goodbye"},
+  {phrase:"good morning"},
+  {phrase:"My name is Peter"},
+  ];
 var CardP = React.createClass({
   getInitialState: function() {
     return {value: 0};
@@ -86,12 +92,7 @@ var display_card = function (number){
   
 }
 var output = createOutput();
-var current_phase="";
-var test_cards = [{phrase:"Hello"},
-  {phrase:"Goodbye"},
-  {phrase:"good morning"},
-  {phrase:"My name is Peter"},
-  ];
+
 
     </script>
   </body>
