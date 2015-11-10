@@ -13,7 +13,7 @@ body {margin:auto;max-width:600px}
   <body>
     <div id="example"></div>
     <script type="text/babel">
-var Input = React.createClass({
+var CardP = React.createClass({
   getInitialState: function() {
     return {value: 0};
   },
@@ -37,8 +37,8 @@ var Input = React.createClass({
   }
 });
 
-ReactDOM.render(<Input/>, 
-        document.getElementById('container')
+ReactDOM.render(<CardP/>, 
+        document.getElementById('exmaple')
       );
 var respond = function(event) {
 	var text = '';
