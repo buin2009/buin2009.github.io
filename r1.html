@@ -24,7 +24,7 @@ var CardP = React.createClass({
     return {value: 0};
   },
    play_words: function(event) {
-    speak(test_data[this.state.value].phrase);
+    speak(test_cards[this.state.value].phrase);
     
   },
   handleChange: function(event) {
@@ -35,8 +35,8 @@ var CardP = React.createClass({
     var value = this.state.value;
     return (
       <div>
-        <div><a onClick={this.playWords}>PLAY:</a>{test_cards[value].phrase}</div>
-        <div><a onClick={this.handleChange}>NEXT:</a></div>
+        <div><a href=# onClick={this.playWords}>PLAY:</a>{test_cards[value].phrase}</div>
+        <div><a href=# onClick={this.handleChange}>NEXT:</a></div>
         <p id="card1">{value}</p>
       </div>
     );
