@@ -35,8 +35,8 @@ var CardP = React.createClass({
     var value = this.state.value;
     return (
       <div>
-        <div><a href=# onClick={this.playWords}>PLAY:</a>{test_cards[value].phrase}</div>
-        <div><a href=# onClick={this.handleChange}>NEXT:</a></div>
+        <div><a href="#" onClick={this.playWords}>PLAY:</a>{test_cards[value].phrase}</div>
+        <div><a href="#" onClick={this.handleChange}>NEXT:</a></div>
         <p id="card1">{value}</p>
       </div>
     );
