@@ -23,8 +23,9 @@ var CardP = React.createClass({
   getInitialState: function() {
     return {value: 0};
   },
-   play_words: function(event) {
+   playWords: function(event) {
     speak(test_cards[this.state.value].phrase);
+    console.log("playWords:"+test_cards[this.state.value].phrase);
     
   },
   handleChange: function(event) {
