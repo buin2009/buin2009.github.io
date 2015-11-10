@@ -18,7 +18,7 @@ var Input = React.createClass({
     return {value: 0};
   },
    play_words: function(event) {
-    speak(test_data[this.state.value]);
+    speak(test_data[this.state.value].phrase);
     
   },
   handleChange: function(event) {
@@ -29,7 +29,7 @@ var Input = React.createClass({
     var value = this.state.value;
     return (
       <div>
-        <div><a onClick={this.playWords}>PLAY:</a>{test_cards[value]}</div>
+        <div><a onClick={this.playWords}>PLAY:</a>{test_cards[value].phrase}</div>
         <div><a onClick={this.handleChange}>NEXT:</a></div>
         <p id="card1">{value}</p>
       </div>
@@ -87,10 +87,10 @@ var display_card = function (number){
 }
 var output = createOutput();
 var current_phase="";
-var test_cards = [{phrase="Hello"},
-  {phrase="Goodbye"},
-  {phrase="good morning"},
-  {phrase="My name is Peter"},
+var test_cards = [{phrase:"Hello"},
+  {phrase:="Goodbye"},
+  {phrase:"good morning"},
+  {phrase:"My name is Peter"},
   ];
 
     </script>
