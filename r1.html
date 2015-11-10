@@ -33,6 +33,7 @@ var CardP = React.createClass({
     current_phase=test_cards[event.target.value];
   },
   matchWords: function(event) {
+    console.log("matchWords:"+test_cards[this.state.value].phrase);
     listen();
   },  
   render: function () {
