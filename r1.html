@@ -21,7 +21,14 @@ var test_cards = [{phrase:"Hello"},
   ];
 var CardP = React.createClass({
   getInitialState: function() {
-    return {value: 0};
+  	var recognition = new webkitSpeechRecognition();
+	recognition.continuous = true;
+	recognition.interimResults = true;
+	recognition.lang = 'en-US';
+	recognition.start();
+	recognition.onresult = this.VoiceRespond;
+	console.log("listen") ;
+    return {value: 0, recognition: recognition};
   },
    playWords: function(event) {
     speak(test_cards[this.state.value].phrase);
@@ -34,8 +41,25 @@ var CardP = React.createClass({
   },
   matchWords: function(event) {
     console.log("matchWords:"+test_cards[this.state.value].phrase);
-    listen();
+    re= this.state.recognition;
+    re.start();
   },  
+    VoiceResponse: function(event) {
+    console.log("VoiceResponse:"+test_cards[this.state.value].phrase);
+    var text = '';
+	for (var i = event.resultIndex; i < event.results.length; ++i) {
+		var result = event.results[i];
+		text = result[0].transcript;
+		text= text.trim();
+		if (result.isFinal) {
+             	console.log(text);
+			if (test_cards[this.state.value].phrase.toLowerCase()==text) { speak("OK"); }
+			else { speak("sorry"); }
+		} else {
+			//output.innerHTML = text;
+		}
+	}
+  },
   render: function () {
     var value = this.state.value;
     return (
@@ -52,30 +76,8 @@ var CardP = React.createClass({
 ReactDOM.render(<CardP/>, 
         document.getElementById('example')
       );
-var respond = function(event) {
-	var text = '';
-	for (var i = event.resultIndex; i < event.results.length; ++i) {
-		var result = event.results[i];
-		text = result[0].transcript;
-		text= text.trim();
-		if (result.isFinal) {
-			output.innerHTML = text+":"+current_phase;
-             console.log(text);
-			output.style.color = 'black';
-			//output = createOutput();
-			if (current_phase.toLowerCase()==text) { speak("OK"); }
-			else { speak("sorry"); }
-		} else {
-			//output.innerHTML = text;
-		}
-	}
-}
-var createOutput = function() {
-	var output = document.createElement('div');
-	output.style.color = 'gray';
-	document.getElementById('card1').appendChild(output);
-	return output;
-}
+
+
 var speak = function(text) {
 	// chrome://flags -> Enable experimental Web Platform features
 	var utterance = new SpeechSynthesisUtterance(text);
@@ -94,11 +96,6 @@ var listen = function() {
 	recognition.onresult = respond;
 	console.log("listen") ;
 }
-var display_card = function (number){
-  
-}
-var output = createOutput();
-
 
     </script>
   </body>
