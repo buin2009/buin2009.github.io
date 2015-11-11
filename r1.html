@@ -45,7 +45,8 @@ var CardP = React.createClass({
     re.start();
   },  
     VoiceResponse: function(event) {
-    console.log("VoiceResponse:"+test_cards[this.state.value].phrase);
+    match_text=this.prop.test_cards[this.state.value].phrase;
+    console.log("VoiceResponse:"+match_text);
     var text = '';
 	for (var i = event.resultIndex; i < event.results.length; ++i) {
 		var result = event.results[i];
@@ -53,7 +54,7 @@ var CardP = React.createClass({
 		text= text.trim();
 		if (result.isFinal) {
              	console.log(text);
-			if (test_cards[this.state.value].phrase.toLowerCase()==text.toLowerCase()) { speak("OK"); }
+			if (match_text.toLowerCase()==text.toLowerCase()) { speak("OK"); }
 			else { speak("sorry"); }
 		} else {
 			//output.innerHTML = text;
