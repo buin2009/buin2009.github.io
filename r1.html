@@ -8,6 +8,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.js"></script>
 <style>
 body {margin:auto;max-width:600px}
+.card-active {background-color:yellow};
+.card-passive {background-color:white};
 </style>
   </head>
   <body>
@@ -36,8 +38,10 @@ var CardP = React.createClass({
     
   },
   handleChange: function(event) {
-    this.setState({value: this.state.value+1});
-    current_phase=test_cards[event.target.value];
+  if (this.state.value+1==sizeof(this.props.test_cards)) {this.setState({value: 0});}
+  else {
+    this.setState({value: this.state.value+1});}
+    
   },
   matchWords: function(event) {
     console.log("matchWords:"+test_cards[this.state.value].phrase);
@@ -64,8 +68,9 @@ var CardP = React.createClass({
   render: function () {
     var value = this.state.value;
    
-     var cards= this.props.test_cards.map(function (cardItem){
-     	  return  (     <div>
+     var cards= this.props.test_cards.map(function (cardItem,i){
+     	var bgclass = this.state.value==i?'card-active':'card-passive';
+     	  return  (     <div key={cardItem.phrase} className={bgclass}>
         <div><a href="#" onClick={this.playWords}>PLAY:</a>{cardItem.phrase}</div>
         <div><a href="#" onClick={this.matchWords}>LISTEN:</a></div>
         <div><a href="#" onClick={this.handleChange}>NEXT:</a></div>
