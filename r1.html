@@ -41,7 +41,7 @@ var CardP = React.createClass({
   },
   matchWords: function(event) {
     console.log("matchWords:"+test_cards[this.state.value].phrase);
-    re= this.state.recognition;
+    var re= this.state.recognition;
     re.start();
   },  
     VoiceResponse: function(event) {
