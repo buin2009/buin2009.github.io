@@ -63,17 +63,20 @@ var CardP = React.createClass({
   render: function () {
     var value = this.state.value;
     return (
-      <div>
-        <div><a href="#" onClick={this.playWords}>PLAY:</a>{test_cards[value].phrase}</div>
+     this.prop.test_cards.map(function (cardItem){
+     	  return       <div>
+        <div><a href="#" onClick={this.playWords}>PLAY:</a>{cardItem.phrase}</div>
         <div><a href="#" onClick={this.matchWords}>LISTEN:</a></div>
         <div><a href="#" onClick={this.handleChange}>NEXT:</a></div>
         <p id="card1">{value}</p>
-      </div>
+      </div> ;
+     })	
+
     );
   }
 });
 
-ReactDOM.render(<CardP/>, 
+ReactDOM.render(<CardP test_cards={test_cards}/>, 
         document.getElementById('example')
       );
 
