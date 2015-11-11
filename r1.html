@@ -49,7 +49,7 @@ var CardP = React.createClass({
     re.start();
   },  
     VoiceResponse: function(event) {
-    match_text=this.props.test_cards[this.state.value].phrase;
+    var match_text=this.props.test_cards[this.state.value].phrase;
     console.log("VoiceResponse:"+match_text);
     var text = '';
 	for (var i = event.resultIndex; i < event.results.length; ++i) {
