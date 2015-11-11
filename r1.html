@@ -53,7 +53,7 @@ var CardP = React.createClass({
 		text= text.trim();
 		if (result.isFinal) {
              	console.log(text);
-			if (test_cards[this.state.value].phrase.toLowerCase()==text) { speak("OK"); }
+			if (test_cards[this.state.value].phrase.toLowerCase()==text.toLowerCase()) { speak("OK"); }
 			else { speak("sorry"); }
 		} else {
 			//output.innerHTML = text;
