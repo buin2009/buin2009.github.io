@@ -63,17 +63,17 @@ var CardP = React.createClass({
   },
   render: function () {
     var value = this.state.value;
-    return (
-     this.props.test_cards.map(function (cardItem){
+   
+     var cards= this.props.test_cards.map(function (cardItem){
      	  return       <div>
         <div><a href="#" onClick={this.playWords}>PLAY:</a>{cardItem.phrase}</div>
         <div><a href="#" onClick={this.matchWords}>LISTEN:</a></div>
         <div><a href="#" onClick={this.handleChange}>NEXT:</a></div>
         <p id="card1">{value}</p>
       </div> ;
-     }, this)	
+     }, this)	;
 
-    );
+     return ({cards});
   }
 });
 
