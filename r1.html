@@ -69,12 +69,12 @@ var CardP = React.createClass({
         <div><a href="#" onClick={this.playWords}>PLAY:</a>{cardItem.phrase}</div>
         <div><a href="#" onClick={this.matchWords}>LISTEN:</a></div>
         <div><a href="#" onClick={this.handleChange}>NEXT:</a></div>
-        <p id="card1">{value}</p>
+        <p id="card1"></p>
         </div> 
         ) ;
      }, this)	;
 
-     return (<div>HELLO</div>);
+     return (<div>{cards}</div>);
   }
 });
 
