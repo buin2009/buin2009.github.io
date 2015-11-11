@@ -38,7 +38,7 @@ var CardP = React.createClass({
     
   },
   handleChange: function(event) {
-  if (this.state.value+1==sizeof(this.props.test_cards)) {this.setState({value: 0});}
+  if (this.state.value+1==this.props.test_cards.length ) {this.setState({value: 0});}
   else {
     this.setState({value: this.state.value+1});}
     
