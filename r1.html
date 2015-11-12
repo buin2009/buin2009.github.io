@@ -58,8 +58,11 @@ var CardP = React.createClass({
 		text = result[0].transcript;
 		text= text.trim();
 		if (result.isFinal) {
-             	console.log(text);
-			if (match_text.toLowerCase()==text.toLowerCase()) { speak("OK"); }
+             	console.log(text+';'+match_text);
+			if (match_text.toLowerCase()==text.toLowerCase()) { 
+				speak("OK"); 
+				this.setState({rStatus[this.state.value]: 'test done'});
+			}
 			else { speak("sorry"); }
 		} else {
 			//output.innerHTML = text;
