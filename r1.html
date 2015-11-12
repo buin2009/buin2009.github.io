@@ -41,10 +41,7 @@ var CardP = React.createClass({
   handleChange: function(event) {
   if (this.state.value+1==this.props.test_cards.length ) {this.setState({value: 0});}
   else {
-      for (var i=this.state.value ; i < this.props.test_cards.length; i++) {
-        this.setState({value: this.state.value+1});
-        if (this.state.rStatus[i+1]=='init') { break; }
-      }
+       this.setState({value: this.state.value+1});
     }
     
   },
