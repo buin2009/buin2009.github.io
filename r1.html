@@ -10,7 +10,7 @@
 body {margin:auto;max-width:600px}
 .card-active {background-color:yellow}
 .card-passive {background-color:white}
-.card-pointer-event-none {pointer-events:none}
+.card-pointer-event-none {opacity:0.5;pointer-events:none}
 </style>
   </head>
   <body>
@@ -88,7 +88,7 @@ var CardP = React.createClass({
     var value = this.state.value;
    
      var cards= this.props.test_cards.map(function (cardItem,i){
-     	var bgclass = this.state.value==i?'card-active':'card-passive card-pointer-evens-none';
+     	var bgclass = this.state.value==i?'card-active':'card-passive card-pointer-event-none';
      	  return  (     <div key={cardItem.phrase} className={bgclass}>
         <div><a href="#" onClick={this.playWords}>PLAY:</a>{cardItem.phrase}</div>
         <div><a href="#" onClick={this.matchWords}>LISTEN:</a></div>
