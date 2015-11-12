@@ -45,6 +45,16 @@ var CardP = React.createClass({
     }
     
   },
+    moveNext: function(event) {
+  if (this.state.value+1==this.props.test_cards.length ) {this.setState({value: 0});}
+  else {
+  	for (var i=this.state.value+1;i<this.props.test_cards.length;i++){
+       this.setState({value: i});
+       if (this.state.rStatus[i]=='init') {break;}
+  	}
+    }
+    
+  },
   matchWords: function(event) {
     console.log("matchWords:"+test_cards[this.state.value].phrase);
     var re= this.state.recognition;
@@ -65,6 +75,7 @@ var CardP = React.createClass({
 				var _rStatus = this.state.rStatus;
 				_rStatus[this.state.value] = 'test done';
 				this.setState({rStatus: _rStatus});
+				this.moveNext();
 			}
 			else { speak("sorry"); }
 		} else {
