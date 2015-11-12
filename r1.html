@@ -43,7 +43,7 @@ var CardP = React.createClass({
   else {
       for (var i=this.state.value ; i < this.props.test_cards.length; i++) {
         this.setState({value: this.state.value+1});
-        if (this.state.rStatus[this.state.value]=='test done') break;
+        if (this.state.rStatus[this.state.value]=='init') break;
       }
     }
     
