@@ -61,7 +61,9 @@ var CardP = React.createClass({
              	console.log(text+';'+match_text);
 			if (match_text.toLowerCase()==text.toLowerCase()) { 
 				speak("OK"); 
-				this.setState({rStatus[this.state.value]: 'test done'});
+				var _rStatus = this.state.rStatus;
+				_rStatus[this.state.value] = 'test done';
+				this.setState({rStatus: _rStatus});
 			}
 			else { speak("sorry"); }
 		} else {
