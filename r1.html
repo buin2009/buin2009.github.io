@@ -30,7 +30,8 @@ var CardP = React.createClass({
 	recognition.start();
 	recognition.onresult = this.VoiceResponse;
 	console.log("listen") ;
-    return {value: 0, recognition: recognition};
+	var rStatus = this.props.test_cards.map(function(){ return 'init';});
+    return {value: 0, recognition: recognition, rStatus:rStatus};
   },
    playWords: function(event) {
     speak(test_cards[this.state.value].phrase);
